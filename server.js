@@ -26,19 +26,9 @@ const database =knex({
 database.select('*').from('users').then(data=>{
 })
 
-const db ={
-    user:[{
-        id:'123',
-        name:'John',
-        email:'john@gmail.com',
-        password:'1234',
-        entries: new Date()
-    }
-
-]}
 
 app.get('/', (req, res) => {
-    res.send(db.user)
+    res.send('it is working')
 })
 
 app.post('/signin', (req, res) => {signin.handleSigin(req,res,database,bcrypt)})
@@ -50,7 +40,7 @@ app.get('/profile/:id', (req, res) => {profile.handleProfile(req,res,database)})
 
 app.put('/image', (req, res) => {image.handleImage(req, res, database)})
 
-app.listen(3000, () => {
-    console.log('listening on server 3000 ')
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`listening on server ${process.env.PORT} `)
 })
 
